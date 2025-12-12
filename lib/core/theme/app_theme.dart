@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 /// App Color Palette
 class AppColors {
-  // Primary Colors - Dark & Elegant
-  static const Color primary = Color(0xFF7C3AED); // Vibrant Purple
-  static const Color primaryLight = Color(0xFFA78BFA); // Light Purple
-  static const Color primaryDark = Color(0xFF6D28D9); // Dark Purple
+  // Primary Colors - Reddish & Elegant
+  static const Color primary = Color(0xFFDC2626); // Vibrant Red
+  static const Color primaryLight = Color(0xFFFCA5A5); // Light Red
+  static const Color primaryDark = Color(0xFF991B1B); // Dark Red
   
   // Background
   static const Color bgPrimary = Color(0xFF0F172A); // Very Dark Blue-Gray
@@ -18,32 +18,32 @@ class AppColors {
   static const Color textTertiary = Color(0xFF64748B); // Medium Gray
   
   // Accent
-  static const Color accent1 = Color(0xFF06B6D4); // Cyan
-  static const Color accent2 = Color(0xFF10B981); // Emerald
+  static const Color accent1 = Color(0xFFF87171); // Light Red
+  static const Color accent2 = Color(0xFFEF5350); // Deep Red
   static const Color accent3 = Color(0xFFF59E0B); // Amber
-  static const Color accent4 = Color(0xFFF87171); // Red
+  static const Color accent4 = Color(0xFF991B1B); // Dark Crimson
   
   // Status
   static const Color success = Color(0xFF10B981);
   static const Color warning = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);
-  static const Color info = Color(0xFF06B6D4);
+  static const Color info = Color(0xFFDC2626);
   
   // Borders & Dividers
-  static const Color border = Color(0xFF475569);
+  static const Color border = Color(0xFF7F1D1D); // Dark Red Border
   static const Color divider = Color(0xFF1E293B);
   
   // Gradient
   static const LinearGradient gradientPrimary = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF7C3AED), Color(0xFF06B6D4)],
+    colors: [Color(0xFFDC2626), Color(0xFFF87171)],
   );
   
   static const LinearGradient gradientSecondary = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF06B6D4), Color(0xFF10B981)],
+    colors: [Color(0xFFF87171), Color(0xFFEF5350)],
   );
 }
 

@@ -88,7 +88,7 @@ class _SpaceBackgroundState extends State<SpaceBackground>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        const Color(0xFF7C3AED).withOpacity(0.1),
+                        const Color(0xFFDC2626).withOpacity(0.1),
                         Colors.transparent,
                       ],
                     ),
@@ -105,7 +105,7 @@ class _SpaceBackgroundState extends State<SpaceBackground>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        const Color(0xFF06B6D4).withOpacity(0.05),
+                        const Color(0xFFF87171).withOpacity(0.05),
                         Colors.transparent,
                       ],
                     ),

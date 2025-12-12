@@ -50,6 +50,7 @@ class _HeroSectionState extends State<HeroSection>
   @override
   Widget build(BuildContext context) {
     final maxWidth = Responsive.getMaxContentWidth(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Container(
       key: widget.sectionKey,
@@ -60,81 +61,209 @@ class _HeroSectionState extends State<HeroSection>
       child: Center(
         child: SizedBox(
           width: maxWidth,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Greeting
-              FadeInAnimation(
-                duration: const Duration(milliseconds: 600),
-                child: Text(
-                  'Hey, I\'m ${AppConstants.fullName}',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-
-              // Typing Animation Text
-              SizedBox(
-                height: 60,
-                child: AnimatedBuilder(
-                  animation: _characterCount,
-                  builder: (context, child) {
-                    return SlideInAnimation(
-                      duration: const Duration(milliseconds: 400),
-                      child: Text(
-                        _fullText.substring(0, _characterCount.value),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(
-                              color: AppColors.primary,
-                            ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xl),
-
-              // Subtitle
-              FadeInAnimation(
-                duration: const Duration(milliseconds: 800),
-                child: Text(
-                  '${AppConstants.title} • Full-Stack Developer • UI/UX Enthusiast',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xxxl),
-
-              // CTA Buttons
-              FadeInAnimation(
-                duration: const Duration(milliseconds: 1000),
-                child: Wrap(
-                  spacing: AppSpacing.lg,
-                  runSpacing: AppSpacing.lg,
+          child: isMobile
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AnimatedHoverButton(
-                      label: 'Download Resume',
-                      onPressed: () {
-                        // TODO: Implement resume download
-                      },
-                      icon: Icons.download,
+                    // Profile Picture (Mobile - Top)
+                    AnimatedProfilePicture(
+                      size: 280,
+                      glowColor: AppColors.primary,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: AppColors.gradientPrimary,
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          size: 140,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                    AnimatedHoverButton(
-                      label: 'Hire Me',
-                      onPressed: () {
-                        // TODO: Scroll to contact section
-                      },
-                      isPrimary: false,
-                      icon: Icons.mail,
+                    const SizedBox(height: AppSpacing.xxxl),
+                    // Text Content (Mobile - Below)
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Greeting
+                        FadeInAnimation(
+                          duration: const Duration(milliseconds: 600),
+                          child: Text(
+                            'Hey, I\'m ${AppConstants.fullName}',
+                            style: Theme.of(context).textTheme.displayLarge,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+
+                        // Typing Animation Text
+                        SizedBox(
+                          height: isMobile ? 100 : 80,
+                          child: AnimatedBuilder(
+                            animation: _characterCount,
+                            builder: (context, child) {
+                              return SlideInAnimation(
+                                duration: const Duration(milliseconds: 400),
+                                child: Text(
+                                  _fullText.substring(0, _characterCount.value),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        color: AppColors.primary,
+                                      ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+
+                        // Subtitle
+                        FadeInAnimation(
+                          duration: const Duration(milliseconds: 800),
+                          child: Text(
+                            '${AppConstants.title} • Full-Stack Developer • UI/UX Enthusiast',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xxxl),
+
+                        // CTA Buttons
+                        FadeInAnimation(
+                          duration: const Duration(milliseconds: 1000),
+                          child: Wrap(
+                            spacing: AppSpacing.lg,
+                            runSpacing: AppSpacing.lg,
+                            children: [
+                              AnimatedHoverButton(
+                                label: 'Download Resume',
+                                onPressed: () {
+                                  // TODO: Implement resume download
+                                },
+                                icon: Icons.download,
+                              ),
+                              AnimatedHoverButton(
+                                label: 'Hire Me',
+                                onPressed: () {
+                                  // TODO: Scroll to contact section
+                                },
+                                isPrimary: false,
+                                icon: Icons.mail,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Text Content (Desktop - Left)
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Greeting
+                          FadeInAnimation(
+                            duration: const Duration(milliseconds: 600),
+                            child: Text(
+                              'Hey, I\'m ${AppConstants.fullName}',
+                              style: Theme.of(context).textTheme.displayLarge,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.lg),
+
+                          // Typing Animation Text
+                          SizedBox(
+                            height: 60,
+                            child: AnimatedBuilder(
+                              animation: _characterCount,
+                              builder: (context, child) {
+                                return SlideInAnimation(
+                                  duration: const Duration(milliseconds: 400),
+                                  child: Text(
+                                    _fullText.substring(0, _characterCount.value),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          color: AppColors.primary,
+                                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xl),
+
+                          // Subtitle
+                          FadeInAnimation(
+                            duration: const Duration(milliseconds: 800),
+                            child: Text(
+                              '${AppConstants.title} • Full-Stack Developer • UI/UX Enthusiast',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xxxl),
+
+                          // CTA Buttons
+                          FadeInAnimation(
+                            duration: const Duration(milliseconds: 1000),
+                            child: Wrap(
+                              spacing: AppSpacing.lg,
+                              runSpacing: AppSpacing.lg,
+                              children: [
+                                AnimatedHoverButton(
+                                  label: 'Download Resume',
+                                  onPressed: () {
+                                    // TODO: Implement resume download
+                                  },
+                                  icon: Icons.download,
+                                ),
+                                AnimatedHoverButton(
+                                  label: 'Hire Me',
+                                  onPressed: () {
+                                    // TODO: Scroll to contact section
+                                  },
+                                  isPrimary: false,
+                                  icon: Icons.mail,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: AppSpacing.xxxl),
+                    // Profile Picture (Desktop - Right)
+                    Expanded(
+                      child: Center(
+                        child: AnimatedProfilePicture(
+                          size: 350,
+                          glowColor: AppColors.primary,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: AppColors.gradientPrimary,
+                            ),
+                            child: const Icon(
+                              Icons.person,
+                              size: 180,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: AppSpacing.sectionGap),
-            ],
-          ),
         ),
       ),
     );

@@ -12,7 +12,6 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = Responsive.isMobile(context);
     final maxWidth = Responsive.getMaxContentWidth(context);
 
     return Container(
@@ -39,68 +38,38 @@ class AboutSection extends StatelessWidget {
               // Content
               FadeInAnimation(
                 duration: const Duration(milliseconds: 800),
-                child: Row(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Animated Profile Picture
-                    if (!isMobile)
-                      Expanded(
-                        child: Center(
-                          child: AnimatedProfilePicture(
-                            size: 300,
-                            glowColor: AppColors.primary,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: AppColors.gradientPrimary,
-                              ),
-                              child: const Icon(
-                                Icons.person,
-                                size: 150,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                    Text(
+                      'I\'m a passionate Flutter developer with 5+ years of experience in mobile and web development. I love creating beautiful, performant, and user-friendly applications.',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(height: AppSpacing.xl),
+                    Text(
+                      'I\'m proficient in Dart, Flutter, Firebase, REST APIs, and state management solutions like GetX and Provider. I\'m always eager to learn new technologies and best practices.',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(height: AppSpacing.xxl),
+
+                    // Quick Facts
+                    Wrap(
+                      spacing: AppSpacing.xxxl,
+                      runSpacing: AppSpacing.xl,
+                      children: [
+                        _QuickFact(
+                          title: '50+',
+                          subtitle: 'Projects Completed',
                         ),
-                      ),
-                    if (!isMobile) const SizedBox(width: AppSpacing.xxxl),
-
-                    // Text Content
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'I\'m a passionate Flutter developer with 5+ years of experience in mobile and web development. I love creating beautiful, performant, and user-friendly applications.',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          const SizedBox(height: AppSpacing.xl),
-                          Text(
-                            'I\'m proficient in Dart, Flutter, Firebase, REST APIs, and state management solutions like GetX and Provider. I\'m always eager to learn new technologies and best practices.',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          const SizedBox(height: AppSpacing.xxl),
-
-                          // Quick Facts
-                          Wrap(
-                            spacing: AppSpacing.xxxl,
-                            runSpacing: AppSpacing.xl,
-                            children: [
-                              _QuickFact(
-                                title: '50+',
-                                subtitle: 'Projects Completed',
-                              ),
-                              _QuickFact(
-                                title: '30+',
-                                subtitle: 'Happy Clients',
-                              ),
-                              _QuickFact(
-                                title: '5+',
-                                subtitle: 'Years Experience',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                        _QuickFact(
+                          title: '30+',
+                          subtitle: 'Happy Clients',
+                        ),
+                        _QuickFact(
+                          title: '5+',
+                          subtitle: 'Years Experience',
+                        ),
+                      ],
                     ),
                   ],
                 ),
