@@ -224,19 +224,25 @@ class _ContactSectionState extends State<ContactSection> {
                             child: ElevatedButton(
                               onPressed:
                                   _isSubmitting ? null : _submitForm,
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 18),
+                              ),
                               child: _isSubmitting
                                   ? const SizedBox(
-                                      height: 20,
-                                      width: 20,
+                                      height: 24,
+                                      width: 24,
                                       child: CircularProgressIndicator(
-                                        strokeWidth: 2,
+                                        strokeWidth: 2.5,
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                           Colors.white,
                                         ),
                                       ),
                                     )
-                                  : const Text('Send Message'),
+                                  : const Text(
+                                      'Send Message',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
                             ),
                           ),
                         ],

@@ -476,6 +476,8 @@ class AnimatedHoverButton extends StatefulWidget {
   final bool isPrimary;
   final IconData? icon;
   final EdgeInsets padding;
+  final double? iconSize;
+  final double? fontSize;
 
   const AnimatedHoverButton({
     required this.label,
@@ -483,6 +485,8 @@ class AnimatedHoverButton extends StatefulWidget {
     this.isPrimary = true,
     this.icon,
     this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    this.iconSize,
+    this.fontSize,
     super.key,
   });
 
@@ -523,8 +527,11 @@ class _AnimatedHoverButtonState extends State<AnimatedHoverButton>
         child: widget.isPrimary
             ? ElevatedButton.icon(
                 onPressed: widget.onPressed,
-                icon: widget.icon != null ? Icon(widget.icon) : const SizedBox(),
-                label: Text(widget.label),
+                icon: widget.icon != null ? Icon(widget.icon, size: widget.iconSize ?? 24) : const SizedBox(),
+                label: Text(
+                  widget.label,
+                  style: TextStyle(fontSize: widget.fontSize ?? 16),
+                ),
                 style: ElevatedButton.styleFrom(
                   padding: widget.padding,
                   backgroundColor: AppColors.primary,
@@ -536,8 +543,11 @@ class _AnimatedHoverButtonState extends State<AnimatedHoverButton>
               )
             : OutlinedButton.icon(
                 onPressed: widget.onPressed,
-                icon: widget.icon != null ? Icon(widget.icon) : const SizedBox(),
-                label: Text(widget.label),
+                icon: widget.icon != null ? Icon(widget.icon, size: widget.iconSize ?? 24) : const SizedBox(),
+                label: Text(
+                  widget.label,
+                  style: TextStyle(fontSize: widget.fontSize ?? 16),
+                ),
                 style: OutlinedButton.styleFrom(
                   padding: widget.padding,
                   side: const BorderSide(color: AppColors.primary, width: 2),

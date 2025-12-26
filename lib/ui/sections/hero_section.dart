@@ -97,30 +97,25 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                         const SizedBox(height: AppSpacing.lg),
 
-                        // Typing Animation Text
-                        SizedBox(
-                          height: isMobile ? 100 : 80,
-                          child: AnimatedBuilder(
-                            animation: _characterCount,
-                            builder: (context, child) {
-                              return SlideInAnimation(
-                                duration: const Duration(milliseconds: 400),
-                                child: Text(
-                                  _fullText.substring(0, _characterCount.value),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium
-                                      ?.copyWith(
-                                        color: AppColors.primary,
-                                      ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              );
-                            },
-                          ),
+                        // Typing Animation Text - No fixed height, wrap naturally
+                        AnimatedBuilder(
+                          animation: _characterCount,
+                          builder: (context, child) {
+                            return SlideInAnimation(
+                              duration: const Duration(milliseconds: 400),
+                              child: Text(
+                                _fullText.substring(0, _characterCount.value),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                      color: AppColors.primary,
+                                    ),
+                              ),
+                            );
+                          },
                         ),
-                        const SizedBox(height: AppSpacing.lg),
+                        const SizedBox(height: AppSpacing.xl),
 
                         // Subtitle
                         FadeInAnimation(
@@ -145,6 +140,9 @@ class _HeroSectionState extends State<HeroSection>
                                   // TODO: Implement resume download
                                 },
                                 icon: Icons.download,
+                                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                                iconSize: 28,
+                                fontSize: 18,
                               ),
                               AnimatedHoverButton(
                                 label: 'Hire Me',
@@ -153,6 +151,9 @@ class _HeroSectionState extends State<HeroSection>
                                 },
                                 isPrimary: false,
                                 icon: Icons.mail,
+                                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                                iconSize: 28,
+                                fontSize: 18,
                               ),
                             ],
                           ),
@@ -181,26 +182,23 @@ class _HeroSectionState extends State<HeroSection>
                           ),
                           const SizedBox(height: AppSpacing.lg),
 
-                          // Typing Animation Text
-                          SizedBox(
-                            height: 60,
-                            child: AnimatedBuilder(
-                              animation: _characterCount,
-                              builder: (context, child) {
-                                return SlideInAnimation(
-                                  duration: const Duration(milliseconds: 400),
-                                  child: Text(
-                                    _fullText.substring(0, _characterCount.value),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium
-                                        ?.copyWith(
-                                          color: AppColors.primary,
-                                        ),
-                                  ),
-                                );
-                              },
-                            ),
+                          // Typing Animation Text - No fixed height, wrap naturally
+                          AnimatedBuilder(
+                            animation: _characterCount,
+                            builder: (context, child) {
+                              return SlideInAnimation(
+                                duration: const Duration(milliseconds: 400),
+                                child: Text(
+                                  _fullText.substring(0, _characterCount.value),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        color: AppColors.primary,
+                                      ),
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(height: AppSpacing.xl),
 
@@ -227,6 +225,9 @@ class _HeroSectionState extends State<HeroSection>
                                     // TODO: Implement resume download
                                   },
                                   icon: Icons.download,
+                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                                  iconSize: 28,
+                                  fontSize: 18,
                                 ),
                                 AnimatedHoverButton(
                                   label: 'Hire Me',
@@ -235,6 +236,9 @@ class _HeroSectionState extends State<HeroSection>
                                   },
                                   isPrimary: false,
                                   icon: Icons.mail,
+                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                                  iconSize: 28,
+                                  fontSize: 18,
                                 ),
                               ],
                             ),
