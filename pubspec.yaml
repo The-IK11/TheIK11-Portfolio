@@ -44,6 +44,9 @@ dependencies:
   # Animations & UI
   flutter_animate: ^4.1.0
   
+  # Lottie Animations
+  lottie: ^2.7.0
+  
   # HTTP & API
   http: ^1.1.0
   
@@ -78,6 +81,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -8,7 +8,7 @@ import 'package:theik11_portfolio/ui/sections/hero_section.dart';
 import 'package:theik11_portfolio/ui/sections/projects_section.dart';
 import 'package:theik11_portfolio/ui/sections/services_section.dart';
 import 'package:theik11_portfolio/ui/sections/skills_section.dart';
-import 'package:theik11_portfolio/ui/sections/testimonials_section.dart';
+import 'package:theik11_portfolio/ui/sections/publications_section.dart';
 import 'package:theik11_portfolio/ui/widgets/custom_widgets.dart';
 import 'package:theik11_portfolio/ui/widgets/navbar.dart';
 
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey _experienceKey = GlobalKey();
   final GlobalKey _projectsKey = GlobalKey();
   final GlobalKey _servicesKey = GlobalKey();
-  final GlobalKey _testimonialsKey = GlobalKey();
+  final GlobalKey _publicationsKey = GlobalKey();
   final GlobalKey _contactKey = GlobalKey();
 
   @override
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       ('experience', _experienceKey),
       ('projects', _projectsKey),
       ('services', _servicesKey),
-      ('testimonials', _testimonialsKey),
+      ('publications', _publicationsKey),
       ('contact', _contactKey),
     ];
 
@@ -124,8 +124,8 @@ class _HomePageState extends State<HomePage> {
       case 'services':
         key = _servicesKey;
         break;
-      case 'testimonials':
-        key = _testimonialsKey;
+      case 'publications':
+        key = _publicationsKey;
         break;
       case 'contact':
         key = _contactKey;
@@ -187,8 +187,8 @@ class _HomePageState extends State<HomePage> {
                     // Services Section
                     ServicesSection(sectionKey: _servicesKey),
 
-                    // Testimonials Section
-                    TestimonialsSection(sectionKey: _testimonialsKey),
+                    // Publications & Open Source Section
+                    PublicationsSection(sectionKey: _publicationsKey),
 
                     // Contact Section
                     ContactSection(sectionKey: _contactKey),

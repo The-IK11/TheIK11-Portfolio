@@ -4,6 +4,25 @@ import 'package:theik11_portfolio/core/theme/app_theme.dart';
 import 'package:theik11_portfolio/core/utils/responsive.dart';
 import 'package:theik11_portfolio/ui/widgets/custom_widgets.dart';
 
+/// Project Data Model
+class ProjectItem {
+  final String title;
+  final String description;
+  final String imageUrl;
+  final List<String> tags;
+  final String github;
+  final String? playstore;
+
+  ProjectItem({
+    required this.title,
+    required this.description,
+    required this.imageUrl,
+    required this.tags,
+    required this.github,
+    this.playstore,
+  });
+}
+
 /// Projects Section
 class ProjectsSection extends StatelessWidget {
   final GlobalKey sectionKey;
@@ -16,50 +35,50 @@ class ProjectsSection extends StatelessWidget {
     final maxWidth = Responsive.getMaxContentWidth(context);
 
     final projects = [
-      {
-        'title': 'E-Commerce App',
-        'description': 'Full-featured e-commerce app with Firebase backend',
-        'image': Icons.shopping_bag,
-        'tags': ['Flutter', 'Firebase', 'Payment Gateway'],
-        'github': 'https://github.com',
-        'playstore': 'https://play.google.com',
-      },
-      {
-        'title': 'Social Media App',
-        'description': 'Real-time chat and social features',
-        'image': Icons.people,
-        'tags': ['Flutter', 'Firebase', 'Real-time DB'],
-        'github': 'https://github.com',
-      },
-      {
-        'title': 'Task Management App',
-        'description': 'Productivity app with cloud sync',
-        'image': Icons.task,
-        'tags': ['Flutter', 'Supabase', 'Local Storage'],
-        'github': 'https://github.com',
-      },
-      {
-        'title': 'Weather App',
-        'description': 'Real-time weather with beautiful UI',
-        'image': Icons.cloud,
-        'tags': ['Flutter', 'REST API', 'UI/UX'],
-        'github': 'https://github.com',
-        'playstore': 'https://play.google.com',
-      },
-      {
-        'title': 'Fitness Tracker',
-        'description': 'Track workouts and health metrics',
-        'image': Icons.fitness_center,
-        'tags': ['Flutter', 'SQLite', 'Charts'],
-        'github': 'https://github.com',
-      },
-      {
-        'title': 'Portfolio Website',
-        'description': 'Modern portfolio built with Flutter Web',
-        'image': Icons.language,
-        'tags': ['Flutter Web', 'Firebase', 'Responsive'],
-        'github': 'https://github.com',
-      },
+      ProjectItem(
+        title: 'E-Commerce App',
+        description: 'Full-featured e-commerce with Firebase',
+        imageUrl: 'https://via.placeholder.com/400x250/FF6B6B/FFFFFF?text=E-Commerce',
+        tags: ['Flutter', 'Firebase'],
+        github: 'https://github.com',
+        playstore: 'https://play.google.com',
+      ),
+      ProjectItem(
+        title: 'Social Media App',
+        description: 'Real-time chat and social features',
+        imageUrl: 'https://via.placeholder.com/400x250/4ECDC4/FFFFFF?text=Social+Media',
+        tags: ['Flutter', 'Firebase'],
+        github: 'https://github.com',
+      ),
+      ProjectItem(
+        title: 'Task Management',
+        description: 'Productivity app with cloud sync',
+        imageUrl: 'https://via.placeholder.com/400x250/45B7D1/FFFFFF?text=Task+Manager',
+        tags: ['Flutter', 'Supabase'],
+        github: 'https://github.com',
+      ),
+      ProjectItem(
+        title: 'Weather App',
+        description: 'Real-time weather with beautiful UI',
+        imageUrl: 'https://via.placeholder.com/400x250/96CEB4/FFFFFF?text=Weather',
+        tags: ['Flutter', 'REST API'],
+        github: 'https://github.com',
+        playstore: 'https://play.google.com',
+      ),
+      ProjectItem(
+        title: 'Fitness Tracker',
+        description: 'Track workouts and health metrics',
+        imageUrl: 'https://via.placeholder.com/400x250/FFEAA7/FFFFFF?text=Fitness',
+        tags: ['Flutter', 'SQLite'],
+        github: 'https://github.com',
+      ),
+      ProjectItem(
+        title: 'Portfolio Website',
+        description: 'Modern portfolio with Flutter Web',
+        imageUrl: 'https://via.placeholder.com/400x250/DDA15E/FFFFFF?text=Portfolio',
+        tags: ['Flutter Web', 'Firebase'],
+        github: 'https://github.com',
+      ),
     ];
 
     return Container(
@@ -90,22 +109,14 @@ class ProjectsSection extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: isMobile ? 1 : 2,
-                    crossAxisSpacing: AppSpacing.xl,
-                    mainAxisSpacing: AppSpacing.xl,
-                    childAspectRatio: 1.1,
+                    crossAxisCount: isMobile ? 2 : (Responsive.isTablet(context) ? 3 : 4),
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.85,
                   ),
                   itemCount: projects.length,
                   itemBuilder: (context, index) {
-                    final project = projects[index];
-                    return _ProjectCard(
-                      title: project['title'] as String,
-                      description: project['description'] as String,
-                      icon: project['image'] as IconData,
-                      tags: List<String>.from(project['tags'] as List),
-                      github: project['github'] as String,
-                      playstore: project['playstore'] as String?,
-                    );
+                    return _ProjectCard(project: projects[index]);
                   },
                 ),
               ),
@@ -118,22 +129,11 @@ class ProjectsSection extends StatelessWidget {
   }
 }
 
+/// Project Card Widget
 class _ProjectCard extends StatefulWidget {
-  final String title;
-  final String description;
-  final IconData icon;
-  final List<String> tags;
-  final String github;
-  final String? playstore;
+  final ProjectItem project;
 
-  const _ProjectCard({
-    required this.title,
-    required this.description,
-    required this.icon,
-    required this.tags,
-    required this.github,
-    this.playstore,
-  });
+  const _ProjectCard({required this.project});
 
   @override
   State<_ProjectCard> createState() => _ProjectCardState();
@@ -142,7 +142,8 @@ class _ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<_ProjectCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _elevationAnimation;
+  late Animation<double> _scaleAnimation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -151,8 +152,12 @@ class _ProjectCardState extends State<_ProjectCard>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _elevationAnimation = Tween<double>(begin: 2.0, end: 12.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.03).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+    _slideAnimation = Tween<Offset>(begin: Offset.zero, end: const Offset(0, -0.02))
+        .animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
   }
 
@@ -167,125 +172,183 @@ class _ProjectCardState extends State<_ProjectCard>
     return MouseRegion(
       onEnter: (_) => _controller.forward(),
       onExit: (_) => _controller.reverse(),
-      child: AnimatedBuilder(
-        animation: _elevationAnimation,
-        builder: (context, child) {
-          return Card(
-            elevation: _elevationAnimation.value,
-            color: AppColors.bgSecondary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: BorderSide(
+      child: SlideTransition(
+        position: _slideAnimation,
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
                 color: AppColors.border.withOpacity(0.3),
+                width: 0.8,
               ),
+              color: AppColors.bgSecondary,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withOpacity(0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.xl),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Icon
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      gradient: AppColors.gradientPrimary,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      widget.icon,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Title
-                  Text(
-                    widget.title,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-
-                  // Description
-                  Expanded(
-                    child: Text(
-                      widget.description,
-                      style: Theme.of(context).textTheme.bodySmall,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-
-                  // Tags
-                  Wrap(
-                    spacing: AppSpacing.sm,
-                    runSpacing: AppSpacing.sm,
-                    children: widget.tags
-                        .take(2)
-                        .map(
-                          (tag) => Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: AppSpacing.md,
-                              vertical: AppSpacing.xs,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Text(
-                              tag,
-                              style: TextStyle(
-                                color: AppColors.primary,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Image Section - Centered in space
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: AppColors.bgTertiary,
+                    child: Center(
+                      child: Image.network(
+                        widget.project.imageUrl,
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(
+                            Icons.image_not_supported,
+                            color: AppColors.textTertiary,
+                            size: 40,
+                          );
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 1.5,
+                              valueColor: AlwaysStoppedAnimation(
+                                AppColors.primary.withOpacity(0.5),
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Links
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextButton.icon(
-                          onPressed: () {
-                            // TODO: Open GitHub
-                          },
-                          icon: const Icon(Icons.code),
-                          label: const Text('Code'),
-                          style: TextButton.styleFrom(
-                            foregroundColor: AppColors.primary,
-                          ),
-                        ),
+                          );
+                        },
                       ),
-                      if (widget.playstore != null)
+                    ),
+                  ),
+                ),
+
+                // Divider
+                Container(
+                  height: 0.8,
+                  color: AppColors.border.withOpacity(0.2),
+                ),
+
+                // Content Section
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Title
+                        Text(
+                          widget.project.title,
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 3),
+
+                        // Description
                         Expanded(
-                          child: TextButton.icon(
-                            onPressed: () {
-                              // TODO: Open Play Store
-                            },
-                            icon: const Icon(Icons.play_arrow),
-                            label: const Text('App'),
-                            style: TextButton.styleFrom(
-                              foregroundColor: AppColors.accent2,
+                          child: Text(
+                            widget.project.description,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppColors.textSecondary,
+                              fontSize: 10,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                    ],
+
+                        // Tags
+                        const SizedBox(height: 6),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 4,
+                          children: widget.project.tags
+                              .take(2)
+                              .map(
+                                (tag) => Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 3,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primary.withOpacity(0.12),
+                                    border: Border.all(
+                                      color: AppColors.primary.withOpacity(0.4),
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  child: Text(
+                                    tag,
+                                    style: TextStyle(
+                                      color: AppColors.primary,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+
+                        // Links
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextButton.icon(
+                                onPressed: () {
+                                  // TODO: Open GitHub
+                                },
+                                icon: const Icon(Icons.code, size: 12),
+                                label: const Text('Code'),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.primary,
+                                  padding: EdgeInsets.zero,
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                ),
+                              ),
+                            ),
+                            if (widget.project.playstore != null)
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () {
+                                    // TODO: Open Play Store
+                                  },
+                                  icon: const Icon(Icons.play_arrow, size: 12),
+                                  label: const Text('App'),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppColors.accent2,
+                                    padding: EdgeInsets.zero,
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
 }
+

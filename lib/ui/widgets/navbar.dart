@@ -29,7 +29,7 @@ class _NavBarState extends State<NavBar> {
     'experience',
     'projects',
     'services',
-    'testimonials',
+    'publications',
     'contact',
   ];
 
@@ -40,7 +40,7 @@ class _NavBarState extends State<NavBar> {
     'experience': 'Experience',
     'projects': 'Projects',
     'services': 'Services',
-    'testimonials': 'Testimonials',
+    'publications': 'Publications',
     'contact': 'Contact',
   };
 
