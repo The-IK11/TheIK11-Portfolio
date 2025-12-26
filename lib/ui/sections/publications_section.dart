@@ -102,9 +102,9 @@ class PublicationsSection extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: isMobile ? 1 : (Responsive.isTablet(context) ? 2 : 3),
-                    crossAxisSpacing: AppSpacing.xl,
-                    mainAxisSpacing: AppSpacing.xl,
-                    childAspectRatio: 0.85,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.75,
                   ),
                   itemCount: publications.length,
                   itemBuilder: (context, index) {
@@ -225,7 +225,7 @@ class _PublicationCardState extends State<_PublicationCard>
                   children: [
                     // Cover Image
                     Container(
-                      height: 160,
+                      height: 100,
                       width: double.infinity,
                       color: AppColors.bgSecondary,
                       child: Stack(
@@ -236,29 +236,29 @@ class _PublicationCardState extends State<_PublicationCard>
                             child: Center(
                               child: Icon(
                                 _getIconForType(widget.publication.type),
-                                size: 48,
+                                size: 32,
                                 color: AppColors.primary.withOpacity(0.3),
                               ),
                             ),
                           ),
                           // Tag Badge
                           Positioned(
-                            top: AppSpacing.md,
-                            right: AppSpacing.md,
+                            top: 6,
+                            right: 6,
                             child: Container(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: AppSpacing.sm,
-                                vertical: 4,
+                                horizontal: 6,
+                                vertical: 3,
                               ),
                               decoration: BoxDecoration(
                                 color: _getColorForType(widget.publication.type),
-                                borderRadius: BorderRadius.circular(4),
+                                borderRadius: BorderRadius.circular(3),
                               ),
                               child: Text(
                                 widget.publication.tag,
                                 style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -271,7 +271,7 @@ class _PublicationCardState extends State<_PublicationCard>
                     // Card Content
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        padding: const EdgeInsets.all(8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -280,12 +280,12 @@ class _PublicationCardState extends State<_PublicationCard>
                               widget.publication.title,
                               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                 fontWeight: FontWeight.w600,
-                                height: 1.3,
+                                height: 1.2,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(height: AppSpacing.sm),
+                            const SizedBox(height: 4),
 
                             // Description
                             Expanded(
@@ -293,7 +293,8 @@ class _PublicationCardState extends State<_PublicationCard>
                                 widget.publication.description,
                                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: AppColors.textSecondary,
-                                  height: 1.4,
+                                  height: 1.3,
+                                  fontSize: 11,
                                 ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -301,11 +302,12 @@ class _PublicationCardState extends State<_PublicationCard>
                             ),
 
                             // Date
-                            const SizedBox(height: AppSpacing.sm),
+                            const SizedBox(height: 4),
                             Text(
                               widget.publication.date,
                               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.textTertiary,
+                                fontSize: 10,
                               ),
                             ),
                           ],
@@ -320,8 +322,8 @@ class _PublicationCardState extends State<_PublicationCard>
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.lg,
-                        vertical: AppSpacing.sm,
+                        horizontal: 8,
+                        vertical: 6,
                       ),
                       color: AppColors.bgSecondary,
                       child: Row(
@@ -332,11 +334,12 @@ class _PublicationCardState extends State<_PublicationCard>
                             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               color: AppColors.primary,
                               fontWeight: FontWeight.w600,
+                              fontSize: 11,
                             ),
                           ),
                           Icon(
                             Icons.arrow_outward_rounded,
-                            size: 14,
+                            size: 12,
                             color: AppColors.primary,
                           ),
                         ],

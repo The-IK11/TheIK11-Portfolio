@@ -68,9 +68,9 @@ class ServicesSection extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: isMobile ? 1 : 2,
-                    crossAxisSpacing: AppSpacing.xl,
-                    mainAxisSpacing: AppSpacing.xl,
-                    childAspectRatio: 1.2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.95,
                   ),
                   itemCount: services.length,
                   itemBuilder: (context, index) {
@@ -155,39 +155,41 @@ class _ServiceCardState extends State<_ServiceCard>
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(AppSpacing.xl),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Icon
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 45,
+                      height: 45,
                       decoration: BoxDecoration(
                         gradient: AppColors.gradientPrimary,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         widget.icon,
                         color: Colors.white,
-                        size: 32,
+                        size: 20,
                       ),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: 6),
 
                     // Title
                     Text(
                       widget.title,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: AppSpacing.md),
+                    const SizedBox(height: 6),
 
                     // Description
                     Expanded(
                       child: Text(
                         widget.description,
                         style: Theme.of(context).textTheme.bodySmall,
-                        maxLines: 3,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
