@@ -42,7 +42,7 @@ class AboutSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'I\'m a passionate Flutter developer with 5+ years of experience in mobile and web development. I love creating beautiful, performant, and user-friendly applications.',
+                      'I\'m a passionate Flutter developer with 1.5+ years of experience in mobile and web app development. I love creating beautiful, performant, and user-friendly applications.',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(height: AppSpacing.xl),
@@ -58,16 +58,16 @@ class AboutSection extends StatelessWidget {
                       runSpacing: AppSpacing.xl,
                       children: [
                         _QuickFact(
-                          title: '50+',
+                          title: '15+',
                           subtitle: 'Projects Completed',
                         ),
                         _QuickFact(
-                          title: '30+',
-                          subtitle: 'Happy Clients',
+                          title: '20+',
+                          subtitle: 'Features Built',
                         ),
                         _QuickFact(
-                          title: '5+',
-                          subtitle: 'Years Experience',
+                          title: '1.5+',
+                          subtitle: 'Years of Hands-on Experience',
                         ),
                       ],
                     ),

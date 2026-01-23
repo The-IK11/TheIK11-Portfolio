@@ -205,7 +205,7 @@ class _HeroSectionState extends State<HeroSection>
                           FadeInAnimation(
                             duration: const Duration(milliseconds: 800),
                             child: Text(
-                              '${AppConstants.title} • Full-Stack Developer • UI/UX Enthusiast',
+                              '${AppConstants.title} • Frontend App Developer • UI/UX Enthusiast',
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:theik11_portfolio/core/constants/app_constants.dart';
 import 'package:theik11_portfolio/core/constants/app_spacing.dart';
 import 'package:theik11_portfolio/core/theme/app_theme.dart';
@@ -149,17 +150,17 @@ class _ContactSectionState extends State<ContactSection> {
                                     _SocialButton(
                                       icon: Icons.language,
                                       label: 'GitHub',
-                                      onPressed: () {},
+                                      url: AppConstants.githubUrl,
                                     ),
                                     _SocialButton(
                                       icon: Icons.language,
                                       label: 'LinkedIn',
-                                      onPressed: () {},
+                                      url: AppConstants.linkedinUrl,
                                     ),
                                     _SocialButton(
                                       icon: Icons.language,
-                                      label: 'Twitter',
-                                      onPressed: () {},
+                                      label: 'Medium',
+                                      url: AppConstants.mediumUrl,
                                     ),
                                   ],
                                 ),
@@ -260,7 +261,7 @@ class _ContactSectionState extends State<ContactSection> {
   }
 }
 
-class _ContactInfo extends StatelessWidget {
+class _ContactInfo extends StatefulWidget {
   final IconData icon;
   final String label;
   final String value;
@@ -272,37 +273,92 @@ class _ContactInfo extends StatelessWidget {
   });
 
   @override
+  State<_ContactInfo> createState() => _ContactInfoState();
+}
+
+class _ContactInfoState extends State<_ContactInfo> {
+  bool _isHovered = false;
+
+  Future<void> _handleContactAction() async {
+    try {
+      if (widget.label.toLowerCase() == 'email') {
+        // Open email client
+        final Uri emailUri = Uri(
+          scheme: 'mailto',
+          path: widget.value,
+        );
+        if (await canLaunchUrl(emailUri)) {
+          await launchUrl(emailUri);
+        }
+      } else if (widget.label.toLowerCase() == 'phone') {
+        // Open phone dialer
+        final Uri phoneUri = Uri(
+          scheme: 'tel',
+          path: widget.value,
+        );
+        if (await canLaunchUrl(phoneUri)) {
+          await launchUrl(phoneUri);
+        }
+      }
+    } catch (e) {
+      debugPrint('Error launching contact action: $e');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            gradient: AppColors.gradientPrimary,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(icon, color: Colors.white),
-        ),
-        const SizedBox(width: AppSpacing.lg),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: Theme.of(context).textTheme.titleSmall,
+    final isClickable =
+        widget.label.toLowerCase() == 'email' || widget.label.toLowerCase() == 'phone';
+
+    return MouseRegion(
+      onEnter: (_) {
+        if (isClickable) {
+          setState(() => _isHovered = true);
+        }
+      },
+      onExit: (_) {
+        if (isClickable) {
+          setState(() => _isHovered = false);
+        }
+      },
+      cursor: isClickable ? SystemMouseCursors.click : MouseCursor.defer,
+      child: GestureDetector(
+        onTap: isClickable ? _handleContactAction : null,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                gradient: AppColors.gradientPrimary,
+                borderRadius: BorderRadius.circular(8),
               ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                value,
-                style: Theme.of(context).textTheme.bodySmall,
+              child: Icon(widget.icon, color: Colors.white),
+            ),
+            const SizedBox(width: AppSpacing.lg),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.label,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    widget.value,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: _isHovered ? AppColors.primary : AppColors.textSecondary,
+                          decoration: _isHovered ? TextDecoration.underline : null,
+                        ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -310,12 +366,12 @@ class _ContactInfo extends StatelessWidget {
 class _SocialButton extends StatefulWidget {
   final IconData icon;
   final String label;
-  final VoidCallback onPressed;
+  final String url;
 
   const _SocialButton({
     required this.icon,
     required this.label,
-    required this.onPressed,
+    required this.url,
   });
 
   @override
@@ -341,6 +397,19 @@ class _SocialButtonState extends State<_SocialButton>
     super.dispose();
   }
 
+  Future<void> _launchUrl() async {
+    try {
+      final Uri uri = Uri.parse(widget.url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        debugPrint('Could not launch ${widget.url}');
+      }
+    } catch (e) {
+      debugPrint('Error launching URL: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -360,7 +429,7 @@ class _SocialButtonState extends State<_SocialButton>
             borderRadius: BorderRadius.circular(8),
           ),
           child: GestureDetector(
-            onTap: widget.onPressed,
+            onTap: _launchUrl,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

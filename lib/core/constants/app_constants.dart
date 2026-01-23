@@ -4,13 +4,13 @@ class AppConstants {
   static const String fullName = 'MD. Ibrahim Khalil';
   static const String nickname = 'The IK11';
   static const String title = 'Flutter Developer';
-  static const String email = 'contact@theik11.com';
-  static const String phone = '+1 (555) 123-4567';
+  static const String email = 'ibrahim258159@gmail.com';
+  static const String phone = '+8801889254301';
   
   // Social Links
-  static const String githubUrl = 'https://github.com/theik11';
-  static const String linkedinUrl = 'https://linkedin.com/in/theik11';
-  static const String twitterUrl = 'https://twitter.com/theik11';
+  static const String githubUrl = 'https://github.com/The-IK11';
+  static const String linkedinUrl = 'https://www.linkedin.com/in/md-ibrahim-khalil-b55b6a226/';
+  static const String mediumUrl = 'https://medium.com/@ibrahim258159';
   static const String instagramUrl = 'https://instagram.com/theik11';
   
   // Resume
