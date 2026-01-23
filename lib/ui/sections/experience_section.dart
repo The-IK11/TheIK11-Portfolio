@@ -16,25 +16,18 @@ class ExperienceSection extends StatelessWidget {
 
     final experiences = [
       {
-        'title': 'Senior Flutter Developer',
-        'company': 'Tech Innovations Inc.',
-        'duration': 'Jan 2023 - Present',
-        'description':
-            'Led mobile app development with Flutter, managed team of 3 developers, improved app performance by 40%.',
-      },
-      {
-        'title': 'Flutter Developer',
-        'company': 'Digital Solutions Ltd.',
-        'duration': 'Jun 2021 - Dec 2022',
-        'description':
-            'Developed and maintained 10+ production apps, integrated Firebase and APIs, implemented state management.',
-      },
-      {
         'title': 'Junior Flutter Developer',
-        'company': 'StartUp Studio',
-        'duration': 'Jan 2021 - May 2021',
+        'company': 'Softvence Agency',
+        'duration': '13th December 2024 - Running',
         'description':
-            'Built mobile applications from scratch, learned best practices, collaborated with designers and backend teams.',
+            'Working as a Junior Flutter Developer, contributing to mobile application development projects using Flutter and Dart. Building scalable and performant applications.',
+      },
+      {
+        'title': 'Intern with Flutter Developer',
+        'company': 'Universe IT',
+        'duration': '1st July 2024 - 10th December 2024',
+        'description':
+            'Completed internship program focused on Flutter development. Gained hands-on experience with mobile app development, learned best practices, and collaborated with the development team on multiple projects.',
       },
     ];
 

@@ -70,14 +70,13 @@ class _HeroSectionState extends State<HeroSection>
                     AnimatedProfilePicture(
                       size: 280,
                       glowColor: AppColors.primary,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: AppColors.gradientPrimary,
-                        ),
-                        child: const Icon(
-                          Icons.person,
-                          size: 140,
-                          color: Colors.white,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(140),
+                        child: Image.asset(
+                          'assets/images/profile_picture.jpg',
+                          fit: BoxFit.cover,
+                          width: 280,
+                          height: 280,
                         ),
                       ),
                     ),
@@ -253,14 +252,13 @@ class _HeroSectionState extends State<HeroSection>
                         child: AnimatedProfilePicture(
                           size: 350,
                           glowColor: AppColors.primary,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: AppColors.gradientPrimary,
-                            ),
-                            child: const Icon(
-                              Icons.person,
-                              size: 180,
-                              color: Colors.white,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(175),
+                            child: Image.asset(
+                              'assets/images/profile_picture.jpg',
+                              fit: BoxFit.cover,
+                              width: 350,
+                              height: 350,
                             ),
                           ),
                         ),
