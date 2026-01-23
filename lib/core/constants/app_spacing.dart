@@ -24,8 +24,8 @@ class AppSpacing {
   static const double containerMargin = 16.0;
   
   // Section
-  static const double sectionGap = 80.0;
-  static const double sectionPadding = 60.0;
+  static const double sectionGap = 40.0;
+  static const double sectionPadding = 32.0;
 }
 
 /// Border radius constants

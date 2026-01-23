@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'The IK11 Portfolio',
+      title: 'THE IBRAHIM KHALIL',
       theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),

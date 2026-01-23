@@ -39,8 +39,8 @@ class _SplashScreenState extends State<SplashScreen>
     // Navigate to home page after 2 seconds
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        // Use pushNamed to allow splash screen to show again on reload
-        Navigator.of(context).pushNamed('/home');
+        // Use pushNamedAndRemoveUntil to remove all previous screens
+        Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
       }
     });
   }

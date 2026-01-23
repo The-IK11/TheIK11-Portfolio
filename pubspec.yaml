@@ -63,6 +63,7 @@ dependencies:
   firebase_core: ^4.3.0
   cloud_firestore: ^6.1.1
   firebase_storage: ^13.0.5
+  pdfx: ^2.9.2
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +88,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lottie/
+    - assets/file/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

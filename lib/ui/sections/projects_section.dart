@@ -42,7 +42,7 @@ class ProjectsSection extends StatelessWidget {
     final projects = [
       ProjectItem(
         title: 'Nutrimir',
-        description: 'AI Meal Analysis App - Analyze meals via photos',
+        description: 'AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos,AI Meal Analysis App - Analyze meals via photos',
         imageUrl: 'assets/images/nutrimir_app.png',
         tags: ['Flutter', 'REST APIs','Web Stripes'],
         playstore: 'https://play.google.com/store/apps/details?id=com.nutrimir.app&pcampaignid=web_share',
@@ -123,10 +123,10 @@ class ProjectsSection extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: isMobile ? 2 : (Responsive.isTablet(context) ? 3 : 4),
+                    crossAxisCount: isMobile ? 1 : (Responsive.isTablet(context) ? 2 : 3),
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.85,
+                    childAspectRatio: 0.9,
                   ),
                   itemCount: projects.length,
                   itemBuilder: (context, index) {
@@ -266,8 +266,8 @@ class _ProjectCardState extends State<_ProjectCard>
                               color: AppColors.textSecondary,
                               fontSize: 12,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                            // maxLines: 1,
+                            // overflow: TextOverflow.ellipsis,
                           ),
                         ),
 
@@ -307,66 +307,60 @@ class _ProjectCardState extends State<_ProjectCard>
 
                         // Links/Buttons
                         const SizedBox(height: 5),
-                        Row(
+                        Wrap(
+                          spacing: 4,
+                          runSpacing: 4,
                           children: [
                             // Play Store Button
                             if (widget.project.playstore != null)
-                              Expanded(
-                                child: TextButton.icon(
-                                  onPressed: () => _launchUrl(context, widget.project.playstore!),
-                                  icon: const Icon(Icons.play_arrow, size: 16),
-                                  label: const Text('Play', style: TextStyle(fontSize: 12)),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.primary,
-                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  ),
+                              TextButton.icon(
+                                onPressed: () => _launchUrl(context, widget.project.playstore!),
+                                icon: const Icon(Icons.play_arrow, size: 16),
+                                label: const Text('Play', style: TextStyle(fontSize: 12)),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.primary,
+                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
                             
                             // App Store Button
                             if (widget.project.appstore != null)
-                              Expanded(
-                                child: TextButton.icon(
-                                  onPressed: () => _launchUrl(context, widget.project.appstore!),
-                                  icon: const Icon(Icons.apple, size: 16),
-                                  label: const Text('Apple', style: TextStyle(fontSize: 12)),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.accent2,
-                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  ),
+                              TextButton.icon(
+                                onPressed: () => _launchUrl(context, widget.project.appstore!),
+                                icon: const Icon(Icons.apple, size: 16),
+                                label: const Text('Apple', style: TextStyle(fontSize: 12)),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.accent2,
+                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
                             
                             // Not Published Dialog
                             if (widget.project.playstore == null && widget.project.appstore == null && widget.project.demoLink != null)
-                              Expanded(
-                                child: TextButton.icon(
-                                  onPressed: () => _showNotPublishedDialog(context),
-                                  icon: const Icon(Icons.info_outline, size: 16),
-                                  label: const Text('Status', style: TextStyle(fontSize: 12)),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Colors.orange,
-                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  ),
+                              TextButton.icon(
+                                onPressed: () => _showNotPublishedDialog(context),
+                                icon: const Icon(Icons.info_outline, size: 16),
+                                label: const Text('Status', style: TextStyle(fontSize: 12)),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.orange,
+                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
                             
                             // Demo Button (if no stores published)
                             if (widget.project.demoLink != null && 
                                 (widget.project.playstore == null || widget.project.appstore == null))
-                              Expanded(
-                                child: TextButton.icon(
-                                  onPressed: () => _launchUrl(context, widget.project.demoLink!),
-                                  icon: const Icon(Icons.play_circle_outlined, size: 16),
-                                  label: const Text('Demo', style: TextStyle(fontSize: 12)),
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Colors.amber,
-                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  ),
+                              TextButton.icon(
+                                onPressed: () => _launchUrl(context, widget.project.demoLink!),
+                                icon: const Icon(Icons.play_circle_outlined, size: 16),
+                                label: const Text('Demo', style: TextStyle(fontSize: 12)),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.amber,
+                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
                           ],
