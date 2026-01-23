@@ -96,7 +96,7 @@ class _HeroSectionState extends State<HeroSection>
                           ),
                         ),
                         const SizedBox(height: AppSpacing.lg),
-
+            
                         // Typing Animation Text - No fixed height, wrap naturally
                         AnimatedBuilder(
                           animation: _characterCount,
