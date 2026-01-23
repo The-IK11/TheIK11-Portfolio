@@ -104,7 +104,7 @@ class PublicationsSection extends StatelessWidget {
                     crossAxisCount: isMobile ? 1 : (Responsive.isTablet(context) ? 2 : 3),
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.75,
+                    childAspectRatio: 1.3,
                   ),
                   itemCount: publications.length,
                   itemBuilder: (context, index) {
@@ -225,7 +225,7 @@ class _PublicationCardState extends State<_PublicationCard>
                   children: [
                     // Cover Image
                     Container(
-                      height: 100,
+                      height: 80,
                       width: double.infinity,
                       color: AppColors.bgSecondary,
                       child: Stack(
@@ -236,7 +236,7 @@ class _PublicationCardState extends State<_PublicationCard>
                             child: Center(
                               child: Icon(
                                 _getIconForType(widget.publication.type),
-                                size: 32,
+                                size: 28,
                                 color: AppColors.primary.withOpacity(0.3),
                               ),
                             ),
@@ -323,7 +323,7 @@ class _PublicationCardState extends State<_PublicationCard>
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
-                        vertical: 6,
+                        vertical: 4,
                       ),
                       color: AppColors.bgSecondary,
                       child: Row(
