@@ -113,144 +113,268 @@ class _ContactSectionState extends State<ContactSection> {
               // Content
               FadeInAnimation(
                 duration: const Duration(milliseconds: 800),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Contact Info
-                    if (!isMobile)
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _ContactInfo(
-                              icon: Icons.email,
-                              label: 'Email',
-                              value: AppConstants.email,
-                            ),
-                            const SizedBox(height: AppSpacing.xxl),
-                            _ContactInfo(
-                              icon: Icons.phone,
-                              label: 'Phone',
-                              value: AppConstants.phone,
-                            ),
-                            const SizedBox(height: AppSpacing.xxl),
+                child: isMobile
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Contact Info (Mobile - Top)
+                          _ContactInfo(
+                            icon: Icons.email,
+                            label: 'Email',
+                            value: AppConstants.email,
+                          ),
+                          const SizedBox(height: AppSpacing.xxl),
+                          _ContactInfo(
+                            icon: Icons.phone,
+                            label: 'Phone',
+                            value: AppConstants.phone,
+                          ),
+                          const SizedBox(height: AppSpacing.xxl),
 
-                            // Social Links
-                            Column(
+                          // Social Links (Mobile - Top)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Connect',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              const SizedBox(height: AppSpacing.md),
+                              Wrap(
+                                spacing: AppSpacing.md,
+                                children: [
+                                  _SocialButton(
+                                    icon: Icons.language,
+                                    label: 'GitHub',
+                                    url: AppConstants.githubUrl,
+                                  ),
+                                  _SocialButton(
+                                    icon: Icons.language,
+                                    label: 'LinkedIn',
+                                    url: AppConstants.linkedinUrl,
+                                  ),
+                                  _SocialButton(
+                                    icon: Icons.language,
+                                    label: 'Medium',
+                                    url: AppConstants.mediumUrl,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: AppSpacing.xxxl),
+
+                          // Contact Form (Mobile - Below)
+                          Column(
+                            children: [
+                              TextField(
+                                controller: _nameController,
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                ),
+                                decoration: InputDecoration(
+                                  hintText: 'Your Name',
+                                  prefixIcon: const Icon(Icons.person),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              TextField(
+                                controller: _emailController,
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                ),
+                                decoration: InputDecoration(
+                                  hintText: 'Your Email',
+                                  prefixIcon: const Icon(Icons.email),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              TextField(
+                                controller: _subjectController,
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                ),
+                                decoration: InputDecoration(
+                                  hintText: 'Subject',
+                                  prefixIcon: const Icon(Icons.subject),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              TextField(
+                                controller: _messageController,
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                ),
+                                maxLines: 5,
+                                decoration: InputDecoration(
+                                  hintText: 'Your Message',
+                                  prefixIcon: const Icon(Icons.message),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.xl),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: _isSubmitting ? null : _submitForm,
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 18),
+                                  ),
+                                  child: _isSubmitting
+                                      ? const SizedBox(
+                                          height: 24,
+                                          width: 24,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2.5,
+                                            valueColor: AlwaysStoppedAnimation<Color>(
+                                              Colors.white,
+                                            ),
+                                          ),
+                                        )
+                                      : const Text(
+                                          'Send Message',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Contact Info (Desktop/Tablet)
+                          Expanded(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Connect',
-                                  style: Theme.of(context).textTheme.titleLarge,
+                                _ContactInfo(
+                                  icon: Icons.email,
+                                  label: 'Email',
+                                  value: AppConstants.email,
                                 ),
-                                const SizedBox(height: AppSpacing.md),
-                                Wrap(
-                                  spacing: AppSpacing.md,
+                                const SizedBox(height: AppSpacing.xxl),
+                                _ContactInfo(
+                                  icon: Icons.phone,
+                                  label: 'Phone',
+                                  value: AppConstants.phone,
+                                ),
+                                const SizedBox(height: AppSpacing.xxl),
+
+                                // Social Links
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    _SocialButton(
-                                      icon: Icons.language,
-                                      label: 'GitHub',
-                                      url: AppConstants.githubUrl,
+                                    Text(
+                                      'Connect',
+                                      style: Theme.of(context).textTheme.titleLarge,
                                     ),
-                                    _SocialButton(
-                                      icon: Icons.language,
-                                      label: 'LinkedIn',
-                                      url: AppConstants.linkedinUrl,
-                                    ),
-                                    _SocialButton(
-                                      icon: Icons.language,
-                                      label: 'Medium',
-                                      url: AppConstants.mediumUrl,
+                                    const SizedBox(height: AppSpacing.md),
+                                    Wrap(
+                                      spacing: AppSpacing.md,
+                                      children: [
+                                        _SocialButton(
+                                          icon: Icons.language,
+                                          label: 'GitHub',
+                                          url: AppConstants.githubUrl,
+                                        ),
+                                        _SocialButton(
+                                          icon: Icons.language,
+                                          label: 'LinkedIn',
+                                          url: AppConstants.linkedinUrl,
+                                        ),
+                                        _SocialButton(
+                                          icon: Icons.language,
+                                          label: 'Medium',
+                                          url: AppConstants.mediumUrl,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    if (!isMobile) const SizedBox(width: AppSpacing.xxxl),
+                          ),
+                          const SizedBox(width: AppSpacing.xxxl),
 
-                    // Contact Form
-                    Expanded(
-                      child: Column(
-                        children: [
-                          TextField(
-                            controller: _nameController,
-                            style: const TextStyle(
-                              color: AppColors.textPrimary,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: 'Your Name',
-                              prefixIcon: const Icon(Icons.person),
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.lg),
-                          TextField(
-                            controller: _emailController,
-                            style: const TextStyle(
-                              color: AppColors.textPrimary,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: 'Your Email',
-                              prefixIcon: const Icon(Icons.email),
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.lg),
-                          TextField(
-                            controller: _subjectController,
-                            style: const TextStyle(
-                              color: AppColors.textPrimary,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: 'Subject',
-                              prefixIcon: const Icon(Icons.subject),
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.lg),
-                          TextField(
-                            controller: _messageController,
-                            style: const TextStyle(
-                              color: AppColors.textPrimary,
-                            ),
-                            maxLines: 5,
-                            decoration: InputDecoration(
-                              hintText: 'Your Message',
-                              prefixIcon: const Icon(Icons.message),
-                            ),
-                          ),
-                          const SizedBox(height: AppSpacing.xl),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed:
-                                  _isSubmitting ? null : _submitForm,
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 18),
-                              ),
-                              child: _isSubmitting
-                                  ? const SizedBox(
-                                      height: 24,
-                                      width: 24,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2.5,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          Colors.white,
-                                        ),
-                                      ),
-                                    )
-                                  : const Text(
-                                      'Send Message',
-                                      style: TextStyle(fontSize: 18),
+                          // Contact Form (Desktop/Tablet)
+                          Expanded(
+                            child: Column(
+                              children: [
+                                TextField(
+                                  controller: _nameController,
+                                  style: const TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Your Name',
+                                    prefixIcon: const Icon(Icons.person),
+                                  ),
+                                ),
+                                const SizedBox(height: AppSpacing.lg),
+                                TextField(
+                                  controller: _emailController,
+                                  style: const TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Your Email',
+                                    prefixIcon: const Icon(Icons.email),
+                                  ),
+                                ),
+                                const SizedBox(height: AppSpacing.lg),
+                                TextField(
+                                  controller: _subjectController,
+                                  style: const TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'Subject',
+                                    prefixIcon: const Icon(Icons.subject),
+                                  ),
+                                ),
+                                const SizedBox(height: AppSpacing.lg),
+                                TextField(
+                                  controller: _messageController,
+                                  style: const TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                  maxLines: 5,
+                                  decoration: InputDecoration(
+                                    hintText: 'Your Message',
+                                    prefixIcon: const Icon(Icons.message),
+                                  ),
+                                ),
+                                const SizedBox(height: AppSpacing.xl),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: _isSubmitting ? null : _submitForm,
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(vertical: 18),
                                     ),
+                                    child: _isSubmitting
+                                        ? const SizedBox(
+                                            height: 24,
+                                            width: 24,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2.5,
+                                              valueColor: AlwaysStoppedAnimation<Color>(
+                                                Colors.white,
+                                              ),
+                                            ),
+                                          )
+                                        : const Text(
+                                            'Send Message',
+                                            style: TextStyle(fontSize: 18),
+                                          ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(height: AppSpacing.sectionGap),
             ],

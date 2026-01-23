@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:theik11_portfolio/core/constants/app_spacing.dart';
 import 'package:theik11_portfolio/core/theme/app_theme.dart';
 import 'package:theik11_portfolio/core/utils/responsive.dart';
@@ -10,16 +11,20 @@ class ProjectItem {
   final String description;
   final String imageUrl;
   final List<String> tags;
-  final String github;
+  final String? github;
   final String? playstore;
+  final String? appstore;
+  final String? demoLink;
 
   ProjectItem({
     required this.title,
     required this.description,
     required this.imageUrl,
     required this.tags,
-    required this.github,
+    this.github,
     this.playstore,
+    this.appstore,
+    this.demoLink,
   });
 }
 
@@ -36,48 +41,57 @@ class ProjectsSection extends StatelessWidget {
 
     final projects = [
       ProjectItem(
-        title: 'E-Commerce App',
-        description: 'Full-featured e-commerce with Firebase',
-        imageUrl: 'https://via.placeholder.com/400x250/FF6B6B/FFFFFF?text=E-Commerce',
+        title: 'Nutrimir',
+        description: 'AI Meal Analysis App - Analyze meals via photos',
+        imageUrl: 'assets/images/nutrimir_app.png',
+        tags: ['Flutter', 'REST APIs','Web Stripes'],
+        playstore: 'https://play.google.com/store/apps/details?id=com.nutrimir.app&pcampaignid=web_share',
+        appstore: null,
+      ),
+      ProjectItem(
+        title: 'Sell Your Strips',
+        description: 'Diabetic Accessories Selling Platform',
+        imageUrl: 'assets/images/sell_your_strips_app.png',
+        tags: ['Flutter', 'REST APIs' ],
+        playstore: 'https://play.google.com/store/apps/details?id=com.sellyourstripsusa.app&pcampaignid=web_share',
+        appstore: 'https://apps.apple.com/us/app/sell-your-strips/id6751053534',
+      ),
+      ProjectItem(
+        title: 'Rovascore',
+        description: 'Live Sports Scores & Stats Platform',
+        imageUrl: 'assets/images/rovascore_app.png',
+        tags: ['Flutter','REST APIs' ,'Firebase'],
+        playstore: 'https://play.google.com/store/apps/details?id=com.rovascore.app&pcampaignid=web_share',
+        appstore: 'https://apps.apple.com/us/app/rovascore-live-scores-news/id6756863993',
+      ),
+      ProjectItem(
+        title: 'Underdog',
+        description: 'Fitness Supplements & Streetwear E-Commerce',
+        imageUrl: 'assets/images/underdog_app.png',
+        tags: ['Flutter', 'REST APIs'],
+        playstore: 'https://play.google.com/store/apps/details?id=com.humbleunderdogs.app',
+        appstore: null,
+      ),
+      ProjectItem(
+        title: 'WingSync',
+        description: 'Crew & Flight Management System',
+        imageUrl: 'assets/images/wingsync_app.png',
         tags: ['Flutter', 'Firebase'],
-        github: 'https://github.com',
-        playstore: 'https://play.google.com',
+        demoLink: 'https://drive.google.com/drive/folders/1lrvqvcnroYHFaqf_oq1u9tPHVHUulWWS?usp=sharing',
       ),
       ProjectItem(
-        title: 'Social Media App',
-        description: 'Real-time chat and social features',
-        imageUrl: 'https://via.placeholder.com/400x250/4ECDC4/FFFFFF?text=Social+Media',
-        tags: ['Flutter', 'Firebase'],
-        github: 'https://github.com',
+        title: 'MindGuardian',
+        description: 'Meditation & Wellness App',
+        imageUrl: 'assets/images/mind_guardian.jpeg',
+        tags: ['Flutter', 'REST APIs' ,'Firebase'],
+        demoLink: 'https://drive.google.com/drive/folders/1RbtWZNdvlWQBIG2Au3ZC8ATF4iinshlv?usp=sharing',
       ),
       ProjectItem(
-        title: 'Task Management',
-        description: 'Productivity app with cloud sync',
-        imageUrl: 'https://via.placeholder.com/400x250/45B7D1/FFFFFF?text=Task+Manager',
-        tags: ['Flutter', 'Supabase'],
-        github: 'https://github.com',
-      ),
-      ProjectItem(
-        title: 'Weather App',
-        description: 'Real-time weather with beautiful UI',
-        imageUrl: 'https://via.placeholder.com/400x250/96CEB4/FFFFFF?text=Weather',
-        tags: ['Flutter', 'REST API'],
-        github: 'https://github.com',
-        playstore: 'https://play.google.com',
-      ),
-      ProjectItem(
-        title: 'Fitness Tracker',
-        description: 'Track workouts and health metrics',
-        imageUrl: 'https://via.placeholder.com/400x250/FFEAA7/FFFFFF?text=Fitness',
-        tags: ['Flutter', 'SQLite'],
-        github: 'https://github.com',
-      ),
-      ProjectItem(
-        title: 'Portfolio Website',
-        description: 'Modern portfolio with Flutter Web',
-        imageUrl: 'https://via.placeholder.com/400x250/DDA15E/FFFFFF?text=Portfolio',
-        tags: ['Flutter Web', 'Firebase'],
-        github: 'https://github.com',
+        title: 'Stoic Alarm',
+        description: 'The Philosopher Quote Alarm',
+        imageUrl: 'assets/images/stoic_alarm_app.png',
+        tags: ['Flutter','REST APIs' ,'Firebase'],
+        demoLink: 'https://drive.google.com/drive/folders/1taDX4pOPKKYceL7Au9lKewAXdO6V2DTC?usp=sharing',
       ),
     ];
 
@@ -200,33 +214,20 @@ class _ProjectCardState extends State<_ProjectCard>
                   flex: 1,
                   child: Container(
                     color: AppColors.bgTertiary,
-                    child: Center(
-                      child: Image.network(
-                        widget.project.imageUrl,
-                        height: 80,
-                        width: 80,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Icon(
+                    child: Image.asset(
+                      widget.project.imageUrl,
+                      height: double.infinity,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Center(
+                          child: Icon(
                             Icons.image_not_supported,
                             color: AppColors.textTertiary,
-                            size: 40,
-                          );
-                        },
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 1.5,
-                              valueColor: AlwaysStoppedAnimation(
-                                AppColors.primary.withOpacity(0.5),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                            size: 60,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -250,7 +251,7 @@ class _ProjectCardState extends State<_ProjectCard>
                           widget.project.title,
                           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w600,
-                            fontSize: 13,
+                            fontSize: 15,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -263,7 +264,7 @@ class _ProjectCardState extends State<_ProjectCard>
                             widget.project.description,
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color: AppColors.textSecondary,
-                              fontSize: 10,
+                              fontSize: 12,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -276,7 +277,7 @@ class _ProjectCardState extends State<_ProjectCard>
                           spacing: 6,
                           runSpacing: 4,
                           children: widget.project.tags
-                              .take(2)
+                              .take(4)
                               .map(
                                 (tag) => Container(
                                   padding: const EdgeInsets.symmetric(
@@ -304,35 +305,66 @@ class _ProjectCardState extends State<_ProjectCard>
                               .toList(),
                         ),
 
-                        // Links
+                        // Links/Buttons
                         const SizedBox(height: 5),
                         Row(
                           children: [
-                            Expanded(
-                              child: TextButton.icon(
-                                onPressed: () {
-                                  // TODO: Open GitHub
-                                },
-                                icon: const Icon(Icons.code, size: 12),
-                                label: const Text('Code'),
-                                style: TextButton.styleFrom(
-                                  foregroundColor: AppColors.primary,
-                                  padding: EdgeInsets.zero,
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                ),
-                              ),
-                            ),
+                            // Play Store Button
                             if (widget.project.playstore != null)
                               Expanded(
                                 child: TextButton.icon(
-                                  onPressed: () {
-                                    // TODO: Open Play Store
-                                  },
-                                  icon: const Icon(Icons.play_arrow, size: 12),
-                                  label: const Text('App'),
+                                  onPressed: () => _launchUrl(context, widget.project.playstore!),
+                                  icon: const Icon(Icons.play_arrow, size: 16),
+                                  label: const Text('Play', style: TextStyle(fontSize: 12)),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppColors.primary,
+                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                ),
+                              ),
+                            
+                            // App Store Button
+                            if (widget.project.appstore != null)
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () => _launchUrl(context, widget.project.appstore!),
+                                  icon: const Icon(Icons.apple, size: 16),
+                                  label: const Text('Apple', style: TextStyle(fontSize: 12)),
                                   style: TextButton.styleFrom(
                                     foregroundColor: AppColors.accent2,
-                                    padding: EdgeInsets.zero,
+                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                ),
+                              ),
+                            
+                            // Not Published Dialog
+                            if (widget.project.playstore == null && widget.project.appstore == null && widget.project.demoLink != null)
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () => _showNotPublishedDialog(context),
+                                  icon: const Icon(Icons.info_outline, size: 16),
+                                  label: const Text('Status', style: TextStyle(fontSize: 12)),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: Colors.orange,
+                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                ),
+                              ),
+                            
+                            // Demo Button (if no stores published)
+                            if (widget.project.demoLink != null && 
+                                (widget.project.playstore == null || widget.project.appstore == null))
+                              Expanded(
+                                child: TextButton.icon(
+                                  onPressed: () => _launchUrl(context, widget.project.demoLink!),
+                                  icon: const Icon(Icons.play_circle_outlined, size: 16),
+                                  label: const Text('Demo', style: TextStyle(fontSize: 12)),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: Colors.amber,
+                                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   ),
                                 ),
@@ -347,6 +379,38 @@ class _ProjectCardState extends State<_ProjectCard>
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Future<void> _launchUrl(BuildContext context, String url) async {
+    try {
+      final Uri uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        debugPrint('Could not launch $url');
+      }
+    } catch (e) {
+      debugPrint('Error launching URL: $e');
+    }
+  }
+
+  void _showNotPublishedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.bgSecondary,
+        title: const Text('Coming Soon'),
+        content: const Text(
+          'This app is currently on the way to being published on app stores. Check back soon or view the demo!',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
       ),
     );
   }

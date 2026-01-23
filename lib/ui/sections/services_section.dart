@@ -19,23 +19,23 @@ class ServicesSection extends StatelessWidget {
       {
         'title': 'Mobile App Development',
         'description':
-            'Native and cross-platform mobile apps using Flutter with Firebase integration',
-        'icon': Icons.phone_android,
+            'Building cross-platform mobile apps using Flutter and Dart, with feature-first development and state management using GetX, Provider, and BLoC following clean architecture principles.',
+        'image': 'assets/images/mobile_app_development.jpg',
       },
       {
         'title': 'UI/UX Design',
-        'description': 'Beautiful and intuitive user interface design following material design',
-        'icon': Icons.palette,
+        'description': 'Translating Figma designs into pixel-perfect Flutter interfaces, focusing on clean layouts, smooth interactions, and practical UI logic.',
+        'image': 'assets/images/ui:ux_design.jpg',
       },
       {
         'title': 'API Integration',
-        'description': 'Seamless integration with REST APIs, Firebase, and cloud services',
-        'icon': Icons.api,
+        'description': 'Integrating REST APIs built with Laravel, MERN, and Django, along with Firebase-based backends for personal and cloud-powered applications.',
+        'image': 'assets/images/api_integration.jpg',
       },
       {
         'title': 'Flutter Web Apps',
-        'description': 'Responsive web applications built with Flutter for all devices',
-        'icon': Icons.language,
+        'description': 'Integrating REST APIs built with Laravel, MERN, and Django, along with Firebase-based backends for personal and cloud-powered applications.',
+        'image': 'assets/images/web_app.jpg',
       },
     ];
 
@@ -78,7 +78,7 @@ class ServicesSection extends StatelessWidget {
                     return _ServiceCard(
                       title: service['title'] as String,
                       description: service['description'] as String,
-                      icon: service['icon'] as IconData,
+                      image: service['image'] as String,
                     );
                   },
                 ),
@@ -95,12 +95,12 @@ class ServicesSection extends StatelessWidget {
 class _ServiceCard extends StatefulWidget {
   final String title;
   final String description;
-  final IconData icon;
+  final String image;
 
   const _ServiceCard({
     required this.title,
     required this.description,
-    required this.icon,
+    required this.image,
   });
 
   @override
@@ -161,25 +161,25 @@ class _ServiceCardState extends State<_ServiceCard>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Icon Section - Centered
+                  // Image Section - Centered
                   Expanded(
                     flex: 1,
                     child: Container(
                       color: AppColors.bgTertiary,
-                      child: Center(
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            gradient: AppColors.gradientPrimary,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Icon(
-                            widget.icon,
-                            color: Colors.white,
-                            size: 24,
-                          ),
-                        ),
+                      child: Image.asset(
+                        widget.image,
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              color: AppColors.textTertiary,
+                              size: 50,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -202,7 +202,8 @@ class _ServiceCardState extends State<_ServiceCard>
                           Text(
                             widget.title,
                             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontSize: 13,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -214,10 +215,10 @@ class _ServiceCardState extends State<_ServiceCard>
                             child: Text(
                               widget.description,
                               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                fontSize: 10,
+                                fontSize: 12,
                               ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                              // maxLines: 2,
+                              // overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
