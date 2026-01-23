@@ -67,10 +67,10 @@ class ServicesSection extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: isMobile ? 1 : 2,
+                    crossAxisCount: isMobile ? 2 : (Responsive.isTablet(context) ? 3 : 4),
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.95,
+                    childAspectRatio: 0.8,
                   ),
                   itemCount: services.length,
                   itemBuilder: (context, index) {
@@ -142,59 +142,89 @@ class _ServiceCardState extends State<_ServiceCard>
           return Transform(
             transform: transform,
             alignment: Alignment.center,
-            child: Card(
-              color: AppColors.bgSecondary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(
-                  color: Color.lerp(
-                    AppColors.border.withOpacity(0.3),
-                    AppColors.primary.withOpacity(0.5),
-                    _controller.value,
-                  )!,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: AppColors.border.withOpacity(0.3),
+                  width: 0.8,
                 ),
+                color: AppColors.bgSecondary,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.05),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon
-                    Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        gradient: AppColors.gradientPrimary,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(
-                        widget.icon,
-                        color: Colors.white,
-                        size: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Icon Section - Centered
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: AppColors.bgTertiary,
+                      child: Center(
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            gradient: AppColors.gradientPrimary,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            widget.icon,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 6),
+                  ),
 
-                    // Title
-                    Text(
-                      widget.title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 6),
+                  // Divider
+                  Container(
+                    height: 0.8,
+                    color: AppColors.border.withOpacity(0.2),
+                  ),
 
-                    // Description
-                    Expanded(
-                      child: Text(
-                        widget.description,
-                        style: Theme.of(context).textTheme.bodySmall,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                  // Content Section
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title
+                          Text(
+                            widget.title,
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontSize: 13,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 4),
+
+                          // Description
+                          Expanded(
+                            child: Text(
+                              widget.description,
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                fontSize: 10,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
