@@ -18,6 +18,15 @@ class PublicationsSection extends StatelessWidget {
 
     final publications = [
       PublicationItem(
+        title: 'Gapx',
+        description: 'A smart, ScreenUtil-aware spacing widget for Flutter that replaces SizedBox and automatically adapts to Row, Column, Flex, and sliver layouts.',
+        date: 'Dec 2025',
+        imageUrl: 'assets/images/gapx_image.png',
+        link: 'https://pub.dev/packages/gapx',
+        type: 'Package',
+        tag: 'Package',
+      ),
+      PublicationItem(
         title: 'Building Scalable Flutter Apps',
         description: 'A comprehensive guide to architectural patterns and best practices.',
         date: 'Mar 2025',
@@ -61,15 +70,6 @@ class PublicationsSection extends StatelessWidget {
         link: 'https://pub.dev/packages/firebase_realtime',
         type: 'Package',
         tag: 'Package',
-      ),
-      PublicationItem(
-        title: 'Experimental UI Components',
-        description: 'Learning project exploring cutting-edge Flutter animation techniques.',
-        date: 'Oct 2024',
-        imageUrl: 'assets/images/publication_experimental.jpg',
-        link: 'https://github.com/theik11/experimental-ui',
-        type: 'Open Source',
-        tag: 'Open Source',
       ),
     ];
 
@@ -224,22 +224,31 @@ class _PublicationCardState extends State<_PublicationCard>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Cover Image
-                    Container(
-                      height: 80,
+                    SizedBox(
+                      height: 150,
                       width: double.infinity,
-                      color: AppColors.bgSecondary,
                       child: Stack(
+                        fit: StackFit.expand,
                         children: [
                           // Image or placeholder
-                          Container(
-                            color: AppColors.bgTertiary,
-                            child: Center(
-                              child: Icon(
-                                _getIconForType(widget.publication.type),
-                                size: 28,
-                                color: AppColors.primary.withOpacity(0.3),
-                              ),
-                            ),
+                          Image.asset(
+                            widget.publication.imageUrl,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 100,
+                            alignment: Alignment.center,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: AppColors.bgTertiary,
+                                child: Center(
+                                  child: Icon(
+                                    _getIconForType(widget.publication.type),
+                                    size: 28,
+                                    color: AppColors.primary.withOpacity(0.3),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           // Tag Badge
                           Positioned(
