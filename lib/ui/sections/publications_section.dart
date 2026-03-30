@@ -303,7 +303,7 @@ class _PublicationCardState extends State<_PublicationCard>
                                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                   color: AppColors.textSecondary,
                                   height: 1.3,
-                                  fontSize: 11,
+                                  fontSize: 12,
                                 ),
                                maxLines: 10,
                                 overflow: TextOverflow.ellipsis,
