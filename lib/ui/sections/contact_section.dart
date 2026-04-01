@@ -5,6 +5,7 @@ import 'package:theik11_portfolio/core/constants/app_spacing.dart';
 import 'package:theik11_portfolio/core/theme/app_theme.dart';
 import 'package:theik11_portfolio/core/utils/responsive.dart';
 import 'package:theik11_portfolio/ui/widgets/custom_widgets.dart';
+import 'package:theik11_portfolio/data/contact_message_service.dart';
 
 /// Contact Section with Form
 class ContactSection extends StatefulWidget {
@@ -57,22 +58,80 @@ class _ContactSectionState extends State<ContactSection> {
 
     setState(() => _isSubmitting = true);
 
-    // TODO: Submit to Firebase
-    await Future.delayed(const Duration(seconds: 2));
+    try {
+      // Show loading dialog
+      if (mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      strokeWidth: 3,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    Text(
+                      'Sending your message...',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: AppColors.textPrimary,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      }
 
-    if (mounted) {
-      setState(() => _isSubmitting = false);
-      _nameController.clear();
-      _emailController.clear();
-      _subjectController.clear();
-      _messageController.clear();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Message sent successfully!'),
-          backgroundColor: AppColors.success,
-        ),
+      // Submit to Firebase
+      final contactService = ContactMessageService();
+      await contactService.submitContactMessage(
+        name: _nameController.text,
+        email: _emailController.text,
+        subject: _subjectController.text,
+        message: _messageController.text,
       );
+
+      if (mounted) {
+        // Close loading dialog
+        Navigator.of(context).pop();
+
+        setState(() => _isSubmitting = false);
+        _nameController.clear();
+        _emailController.clear();
+        _subjectController.clear();
+        _messageController.clear();
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Message sent successfully!'),
+            backgroundColor: AppColors.success,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        // Close loading dialog
+        Navigator.of(context).pop();
+
+        setState(() => _isSubmitting = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
     }
   }
 
