@@ -42,14 +42,15 @@ class AboutSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'I\'m a passionate Flutter developer with 1.5+ years of experience in mobile and web app development. I love creating beautiful, performant, and user-friendly applications.',
+                      'With over 2 years of hands-on experience, I thrive at the intersection of great design and solid engineering. I love taking an idea from a simple concept to a fully deployed, high-performing Flutter application.',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     Text(
-                      'I\'m proficient in Dart, Flutter, Firebase, REST APIs, and state management solutions like GetX and Provider. I\'m always eager to learn new technologies and best practices.',
+                      'I\'m proficient in Dart, Firebase, and REST APIs, always focusing on writing clean code with optimal state management like GetX and Provider. Whether it\'s building a complex UI flow or ensuring a smooth app release, I am dedicated to delivering top-tier digital products.',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
+
                     const SizedBox(height: AppSpacing.xxl),
 
                     // Quick Facts
@@ -61,12 +62,9 @@ class AboutSection extends StatelessWidget {
                           title: '15+',
                           subtitle: 'Projects Completed',
                         ),
+                        _QuickFact(title: '20+', subtitle: 'Features Built'),
                         _QuickFact(
-                          title: '20+',
-                          subtitle: 'Features Built',
-                        ),
-                        _QuickFact(
-                          title: '1.5+',
+                          title: '2',
                           subtitle: 'Years of Hands-on Experience',
                         ),
                       ],
@@ -86,10 +84,7 @@ class _QuickFact extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const _QuickFact({
-    required this.title,
-    required this.subtitle,
-  });
+  const _QuickFact({required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -99,14 +94,11 @@ class _QuickFact extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: AppColors.primary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium?.copyWith(color: AppColors.primary),
         ),
-        Text(
-          subtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
       ],
     );
   }

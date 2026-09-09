@@ -42,56 +42,92 @@ class ProjectsSection extends StatelessWidget {
     final projects = [
       ProjectItem(
         title: 'Nutrimir',
-        description: 'AI Meal Analysis App - Analyze meals via photos.This app helps you take control of your health by understanding your food better. Just snap a photo of your meal, and let our smart AI break down the ingredients, nutrition info, and more — instantly.',
+        description:
+            'AI Meal Analysis App - Analyze meals via photos.This app helps you take control of your health by understanding your food better. Just snap a photo of your meal, and let our smart AI break down the ingredients, nutrition info, and more — instantly.',
         imageUrl: 'assets/images/nutrimir_app.png',
-        tags: ['Flutter', 'REST APIs','Web Stripes', 'In app purchases' ],
-        playstore: 'https://play.google.com/store/apps/details?id=com.nutrimir.app&pcampaignid=web_share',
-        appstore: null,
+        tags: ['Flutter', 'REST APIs', 'Web Stripes', 'In app purchases'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.nutrimir.app&pcampaignid=web_share',
+        appstore: 'https://apps.apple.com/us/app/nutrimir/id6751311488',
       ),
       ProjectItem(
         title: 'Sell Your Strips',
-        description: 'Diabetic Accessories Selling Platform. Sell Your Unused Diabetic Supplies for Fast Cash! Have extra diabetic supplies? Don’t let them go to waste—turn them into quick cash with no hassle, no hidden fees, and fast payment. We are serving you Monday to Saturday 9:00 am to 5:00 pm CST',
+        description:
+            'Diabetic Accessories Selling Platform. Sell Your Unused Diabetic Supplies for Fast Cash! Have extra diabetic supplies? Don’t let them go to waste—turn them into quick cash with no hassle, no hidden fees, and fast payment. We are serving you Monday to Saturday 9:00 am to 5:00 pm CST',
         imageUrl: 'assets/images/sell_your_strips_app.png',
-        tags: ['Flutter', 'REST APIs' ],
-        playstore: 'https://play.google.com/store/apps/details?id=com.sellyourstripsusa.app&pcampaignid=web_share',
+        tags: ['Flutter', 'REST APIs'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.sellyourstripsusa.app&pcampaignid=web_share',
         appstore: 'https://apps.apple.com/us/app/sell-your-strips/id6751053534',
       ),
       ProjectItem(
         title: 'Rovascore',
-        description: 'Live Sports Scores & Stats Platform. RovaScore livescore is your ultimate companion for football and cricket, basketball enthusiasts. Get live match statistics, real-time scores, and in-depth player performance analytics.',
+        description:
+            'Live Sports Scores & Stats Platform. RovaScore livescore is your ultimate companion for football and cricket, basketball enthusiasts. Get live match statistics, real-time scores, and in-depth player performance analytics.',
         imageUrl: 'assets/images/rovascore_app.png',
-        tags: ['Flutter','REST APIs' ,'Firebase'],
-        playstore: 'https://play.google.com/store/apps/details?id=com.rovascore.app&pcampaignid=web_share',
-        appstore: 'https://apps.apple.com/us/app/rovascore-live-scores-news/id6756863993',
+        tags: ['Flutter', 'REST APIs', 'Firebase'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.rovascore.app&pcampaignid=web_share',
+        appstore:
+            'https://apps.apple.com/us/app/rovascore-live-scores-news/id6756863993',
       ),
       ProjectItem(
         title: 'Underdog',
-        description: 'Whether you are looking for the latest apparel designs for the gym and the city, or you need the best Protein, Creatine, & pre-workout to crush your goals, the HumbleUnderdogs app has you covered. Shop quickly, easily, and gain access to exclusive app-only deals.',
+        description:
+            'Whether you are looking for the latest apparel designs for the gym and the city, or you need the best Protein, Creatine, & pre-workout to crush your goals, the HumbleUnderdogs app has you covered. Shop quickly, easily, and gain access to exclusive app-only deals.',
         imageUrl: 'assets/images/underdog_app.png',
-        tags: ['Flutter', 'REST APIs','Web Stripes'],
-        playstore: 'https://play.google.com/store/apps/details?id=com.humbleunderdogs.app',
-        appstore: null,
+        tags: ['Flutter', 'REST APIs', 'Web Stripes'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.humbleunderdogs.app',
+        appstore: 'https://apps.apple.com/us/app/humbleunderdogs/id6757789422',
       ),
       ProjectItem(
         title: 'WingSync',
-        description: 'Crew & Flight Management System. Keeping you up to date with the latest in aviation tech and real-time flight data. Whether you\'re looking for automated rosters, live delay tracking, or seamless family sync, I’m your one-stop destination for bridging the gap between the cockpit and the home. From OCR roster scanning to FlightRadar24 API integrations, I build the tools that keep crews and their families connected. Stay on top of every arrival with WingSync!',
+        description:
+            'Crew & Flight Management System. Keeping you up to date with the latest in aviation tech and real-time flight data. Whether you\'re looking for automated rosters, live delay tracking, or seamless family sync, I’m your one-stop destination for bridging the gap between the cockpit and the home. From OCR roster scanning to FlightRadar24 API integrations, I build the tools that keep crews and their families connected. Stay on top of every arrival with WingSync!',
         imageUrl: 'assets/images/wingsync_app.png',
-        tags: ['Flutter','REST APIs' ,'Firebase', 'In app purchases' ],
-        demoLink: 'https://drive.google.com/drive/folders/1lrvqvcnroYHFaqf_oq1u9tPHVHUulWWS?usp=sharing',
+        tags: ['Flutter', 'REST APIs', 'Firebase', 'In app purchases'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.wingsync.app&pcampaignid=web_share',
+        appstore: 'https://apps.apple.com/us/app/wingsync/id6766338480',
       ),
       ProjectItem(
         title: 'MindGuardian',
-        description: 'MindGuardian is your personal AI-powered assistant for balance, focus, and motivation. It provides the essential tools to protect your mental health and achieve your goals in a stressful world.',
+        description:
+            'MindGuardian is your personal AI-powered assistant for balance, focus, and motivation. It provides the essential tools to protect your mental health and achieve your goals in a stressful world.',
         imageUrl: 'assets/images/mind_guardian.jpeg',
-        tags: ['Flutter', 'REST APIs' ,'Firebase', 'In app purchases' ],
-        playstore: 'https://play.google.com/store/apps/details?id=com.mindgurdina.app',
+        tags: ['Flutter', 'REST APIs', 'Firebase', 'In app purchases'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.mindgurdina.app',
+        appstore: 'https://apps.apple.com/us/app/mindguardian/id6752973529',
       ),
       ProjectItem(
         title: 'Stoic Alarm',
-        description: 'The Philosopher Quote Alarm. A Stoic-inspired alarm app that helps users start their day with motivation—set repeating alarms, choose custom “philosopher voice” alarm sounds, get daily quotes with explanations, and manage your account/profile with secure OTP-based password recovery, backed by Firebase and API integration.',
+        description:
+            'The Philosopher Quote Alarm. A Stoic-inspired alarm app that helps users start their day with motivation—set repeating alarms, choose custom “philosopher voice” alarm sounds, get daily quotes with explanations, and manage your account/profile with secure OTP-based password recovery, backed by Firebase and API integration.',
         imageUrl: 'assets/images/stoic_alarm_app.png',
-        tags: ['Flutter','REST APIs' ,'Firebase', 'In app purchases' ],
-        demoLink: 'https://drive.google.com/drive/folders/1taDX4pOPKKYceL7Au9lKewAXdO6V2DTC?usp=sharing',
+        tags: ['Flutter', 'REST APIs', 'Firebase', 'In app purchases'],
+        demoLink:
+            'https://drive.google.com/drive/folders/1taDX4pOPKKYceL7Au9lKewAXdO6V2DTC?usp=sharing',
+      ),
+
+      ProjectItem(
+        title: 'BarkBridgeAI',
+        description:
+            'AI-powered dog behavior analysis app that analyzes video, sounds, movement, and body language to provide behavioral insights.',
+        imageUrl: 'assets/images/barkbridge_ai_mockup.png',
+        tags: ['Flutter', 'REST APIs', 'Firebase', 'In app purchases'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.barkbridgeai.app&pcampaignid=web_share',
+      ),
+      ProjectItem(
+        title: 'WatchMeGrow',
+        description:
+            'A social reading and writing platform where users can read, publish, share stories, and participate in engaging literary events.',
+        imageUrl: 'assets/images/WatchMeGrow_mockup.png',
+        tags: ['Flutter', 'REST APIs', 'Firebase', 'PDF,EPUB reader', 'Stripe'],
+        playstore:
+            'https://play.google.com/store/apps/details?id=com.watchmegrow.app',
       ),
     ];
 
@@ -123,7 +159,9 @@ class ProjectsSection extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: isMobile ? 1 : (Responsive.isTablet(context) ? 2 : 3),
+                    crossAxisCount: isMobile
+                        ? 1
+                        : (Responsive.isTablet(context) ? 2 : 3),
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
                     childAspectRatio: 0.9,
@@ -166,13 +204,14 @@ class _ProjectCardState extends State<_ProjectCard>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.03).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
-    _slideAnimation = Tween<Offset>(begin: Offset.zero, end: const Offset(0, -0.02))
-        .animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 1.03,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    _slideAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -0.02),
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
   }
 
   @override
@@ -249,10 +288,11 @@ class _ProjectCardState extends State<_ProjectCard>
                         // Title
                         Text(
                           widget.project.title,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -262,10 +302,11 @@ class _ProjectCardState extends State<_ProjectCard>
                         Expanded(
                           child: Text(
                             widget.project.description,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppColors.textSecondary,
-                              fontSize: 12,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 12,
+                                ),
                             // maxLines: 1,
                             // overflow: TextOverflow.ellipsis,
                           ),
@@ -314,53 +355,97 @@ class _ProjectCardState extends State<_ProjectCard>
                             // Play Store Button
                             if (widget.project.playstore != null)
                               TextButton.icon(
-                                onPressed: () => _launchUrl(context, widget.project.playstore!),
+                                onPressed: () => _launchUrl(
+                                  context,
+                                  widget.project.playstore!,
+                                ),
                                 icon: const Icon(Icons.play_arrow, size: 16),
-                                label: const Text('Play', style: TextStyle(fontSize: 12)),
+                                label: const Text(
+                                  'Play',
+                                  style: TextStyle(fontSize: 12),
+                                ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: AppColors.primary,
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
-                            
+
                             // App Store Button
                             if (widget.project.appstore != null)
                               TextButton.icon(
-                                onPressed: () => _launchUrl(context, widget.project.appstore!),
+                                onPressed: () => _launchUrl(
+                                  context,
+                                  widget.project.appstore!,
+                                ),
                                 icon: const Icon(Icons.apple, size: 16),
-                                label: const Text('Apple', style: TextStyle(fontSize: 12)),
+                                label: const Text(
+                                  'Apple',
+                                  style: TextStyle(fontSize: 12),
+                                ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: AppColors.accent2,
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
-                            
+
                             // Not Published Dialog
-                            if (widget.project.playstore == null && widget.project.appstore == null && widget.project.demoLink != null)
+                            if (widget.project.playstore == null &&
+                                widget.project.appstore == null &&
+                                widget.project.demoLink != null)
                               TextButton.icon(
-                                onPressed: () => _showNotPublishedDialog(context),
+                                onPressed: () =>
+                                    _showNotPublishedDialog(context),
                                 icon: const Icon(Icons.info_outline, size: 16),
-                                label: const Text('Status', style: TextStyle(fontSize: 12)),
+                                label: const Text(
+                                  'Status',
+                                  style: TextStyle(fontSize: 12),
+                                ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.orange,
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
-                            
+
                             // Demo Button (if no stores published)
-                            if (widget.project.demoLink != null && 
-                                (widget.project.playstore == null || widget.project.appstore == null))
+                            if (widget.project.demoLink != null &&
+                                (widget.project.playstore == null ||
+                                    widget.project.appstore == null))
                               TextButton.icon(
-                                onPressed: () => _launchUrl(context, widget.project.demoLink!),
-                                icon: const Icon(Icons.play_circle_outlined, size: 16),
-                                label: const Text('Demo', style: TextStyle(fontSize: 12)),
+                                onPressed: () => _launchUrl(
+                                  context,
+                                  widget.project.demoLink!,
+                                ),
+                                icon: const Icon(
+                                  Icons.play_circle_outlined,
+                                  size: 16,
+                                ),
+                                label: const Text(
+                                  'Demo',
+                                  style: TextStyle(fontSize: 12),
+                                ),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.amber,
-                                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                 ),
                               ),
                           ],
@@ -409,4 +494,3 @@ class _ProjectCardState extends State<_ProjectCard>
     );
   }
 }
-
