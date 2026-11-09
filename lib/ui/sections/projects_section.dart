@@ -128,6 +128,9 @@ class ProjectsSection extends StatelessWidget {
         tags: ['Flutter', 'REST APIs', 'Firebase', 'PDF,EPUB reader', 'Stripe'],
         playstore:
             'https://play.google.com/store/apps/details?id=com.watchmegrow.app',
+
+        appstore:
+            "https://apps.apple.com/us/app/watch-me-grow-app/id6782528458",
       ),
     ];
 
